@@ -1,5 +1,7 @@
 # decsync-docker
-A minimalistic, but batteries-included, up-to-date docker container for running [Decsync](https://github.com/39aldo39/DecSync) as a local CalDav server (using [Radicale](https://github.com/Kozea/Radicale)). This way, Decsync can be easily used with any calendar app supporting CalDav – e.g. Thunderbird or Gnome Calendar.
+A minimalistic, but batteries-included, up-to-date docker container for running [Decsync](https://github.com/39aldo39/DecSync) as a local CalDav server – with one command. This way, Decsync can be easily used with any calendar app supporting CalDav – e.g. Thunderbird or Gnome Calendar.
+
+This container runs [Radicale](https://github.com/Kozea/Radicale) with the official [Radicale Decsync plugin](https://github.com/39aldo39/Radicale-DecSync) internally.
 
 ## Usage
 
