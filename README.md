@@ -9,11 +9,11 @@ To run the container, and have it automatically start after rebooting, just do:
 
 ```bash
 docker run \
-  -v <decsync-directory>:/decsync-data \
-  -p 5232:5232 \
-  --name decsync-caldav \
-  --restart unless-stopped \  
-  ghcr.io/mityax/decsync-docker:main
+    -v <decsync-directory>:/decsync-data \
+    -p 5232:5232 \
+    --name decsync-caldav \
+    --restart unless-stopped \  
+    ghcr.io/mityax/decsync-docker:main
 ```
 
 **Remember to** replace `<decsync-directory>` in the command in with the path to your local, synchronised Decsync data directory.
