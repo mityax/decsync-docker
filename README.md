@@ -14,11 +14,11 @@ docker run -d --name decsync-caldav \
     ghcr.io/mityax/decsync-docker:main
 ```
 
-**Remember to** replace `<decsync-directory>` in the command in with the path to your local, synchronised Decsync data directory.
+**Remember to** replace `<decsync-directory>` in the command with the path to your local, synchronized Decsync data directory.
 
 You can then just connect to the local CalDav server using this url: [http://localhost:5232](http://localhost:5232)
 
-When asked for credentials, just enter something random – the server accepts everything as per the defaul configuration, which is fine as long is it is only exposed locally.
+When asked for credentials, just enter something random – the server accepts everything as per the default configuration, which is fine as long is it is only exposed locally.
 
 ### Setting up Automatic Updates (optional)
 To keep the container automatically up to date (using watchtower), use:
