@@ -8,11 +8,9 @@ This container runs [Radicale](https://github.com/Kozea/Radicale) with the offic
 To run the container, and have it automatically start after rebooting, just do:
 
 ```bash
-docker run \
+docker run -d --name decsync-caldav \
     -v <decsync-directory>:/decsync-data \
     -p 5232:5232 \
-    --name decsync-caldav \
-    --restart unless-stopped \  
     ghcr.io/mityax/decsync-docker:main
 ```
 
