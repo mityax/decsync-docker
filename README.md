@@ -1,20 +1,19 @@
 # decsync-docker
-A minimalistic, but batteries-included, up-to-date docker container for running [Decsync](https://github.com/39aldo39/DecSync) as a local CalDav server – with one command. This way, Decsync can be easily used with any calendar app supporting CalDav – e.g. Thunderbird or Gnome Calendar.
+A minimalistic, but batteries-included, up-to-date docker image for running [Decsync](https://github.com/39aldo39/DecSync) as a local CalDav server – with one command. This way, Decsync can be easily used with any calendar app supporting CalDav – e.g. Thunderbird or Gnome Calendar.
 
 This container runs [Radicale](https://github.com/Kozea/Radicale) with the official [Radicale Decsync plugin](https://github.com/39aldo39/Radicale-DecSync) internally.
 
-## Quick Start
+## Quickstart
 
 To run the container, and have it automatically start after rebooting, just do:
 
 ```bash
-docker run -d --name decsync-caldav \
-    -v <decsync-directory>:/decsync-data \
-    -p 5232:5232 \
+docker run -d -p 5232:5232 --name decsync-caldav \
+    -v </path/to/decsync-data>:/decsync-data \
     ghcr.io/mityax/decsync-docker:main
 ```
 
-**Remember to** replace `<decsync-directory>` in the command with the path to your local, synchronized Decsync data directory.
+**Remember to** replace `</path/to/decsync-data>` in the command with the path to your local, synchronized Decsync data directory.
 
 You can then just connect to the local CalDav server using this url: [http://localhost:5232](http://localhost:5232)
 
@@ -24,8 +23,7 @@ When asked for credentials, just enter something random – the server accepts e
 To keep the container automatically up to date (using watchtower), use:
 
 ```bash
-docker run -d \
-    --name watchtower-decsync \
+docker run -d --name watchtower-decsync \
     -v /var/run/docker.sock:/var/run/docker.sock \
     containrrr/watchtower decsync-caldav
 ```
