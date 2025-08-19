@@ -19,16 +19,40 @@ You can then just connect to the local CalDav server using this url: [http://loc
 
 When asked for credentials, just enter something random – the server accepts everything as per the default configuration, which is fine as long is it is only exposed locally.
 
-### Setting up Automatic Updates (optional)
-To keep the container automatically up to date (using watchtower), use:
 
-```bash
-docker run -d --name watchtower-decsync \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    containrrr/watchtower decsync-caldav
-```
+<details>
+<summary><h3>Using Podman?</h3></summary>
 
-Since Decsync has seen little changes in years however, and is basically only kept in a working state, it should be perfectly fine to not setup auto updates if you just want to have a stable, working setup.
+The best way to setup this image using Podman is to create a quadlet:
+
+1. Create `~/.config/containers/systemd/decsync-caldav.container` and paste:
+   ```
+   [Unit]
+   Description=Decsync-Caldav Server
+   
+   [Container]
+   ContainerName=decsync-caldav
+   Image=ghcr.io/mityax/decsync-docker:main
+   AutoUpdate=registry
+    
+   HealthCmd=curl http://localhost:5232
+   
+   PublishPort=5232:5232
+
+   # Here, replace <decsync-data-dir> with the path to your synchronized data 
+   # directory (tip: use "%h" as placeholder for the home directory, e.g. "%h/.decsync-data"):
+   Volume=<decsync-data-dir>:/decsync-data:z
+    
+   [Service]
+   Restart=always
+   TimeoutStartSec=300
+    
+   [Install]
+   WantedBy=default.target
+   ```
+2. Make systemd aware of your quadlet: `systemctl --user daemon-reload`
+3. Start your quadlet: `systemctl --user start decsync-caldav`
+</details>
 
 ## Advanced Configuration
 Should you want to add further server/Radicale configuration, take a look at the [base image](https://github.com/tomsquest/docker-radicale).
